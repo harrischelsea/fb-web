@@ -11,6 +11,7 @@ export const loginUser = response => dispatch => {
     axios.post('/api/login', response)
         .then((res) => {
             localStorage.setItem('token', res.data.token);
+            axios.defaults.headers.common.Authorization = res.data.token;
             dispatch(loginUserSuccess(res.data));
         }).catch(err => dispatch(loginUserFailed(err)));
 };

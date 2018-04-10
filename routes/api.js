@@ -39,7 +39,15 @@ router.post('/login', function(req, res, next) {
 });
 
 router.get('/get-posts', function(req, res, next) {
-    res.send([1, 2, 3]);
+    const user = req.user;
+
+    axios.get('https://graph.facebook.com/v2.12/me/posts?fields=likes,comments,message,created_time,caption,story,full_picture&access_token=' + user.access_token)
+        .then(response => {
+            res.send(response.data);
+        })
+        .catch(err => {
+            res.status(400).send(err);
+        });
 
 });
 
