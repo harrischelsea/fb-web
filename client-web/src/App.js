@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'semantic-ui-css/semantic.min.css';
+
+import { BrowserRouter } from 'react-router-dom';
+import axios from 'axios';
+import Router from './router';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducer from './reducers';
+import ReduxThunk from 'redux-thunk';
+import { composeWithDevTools} from 'redux-devtools-extension';
+
+const store = createStore(reducer, {}, composeWithDevTools(applyMiddleware(ReduxThunk)));
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <Provider store={store}>
+            <BrowserRouter>
+                <Router/>
+            </BrowserRouter>
+        </Provider>
     );
   }
 }
 
+axios.defaults.baseURL = 'http://localhost:5000/';
 export default App;

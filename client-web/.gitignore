@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+# app info
+/secret
+
 # testing
 /coverage
 
