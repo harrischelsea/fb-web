@@ -15,10 +15,13 @@ router.post('/login', function(req, res, next) {
     let app_id = secret.app_id;
     let app_secret = secret.app_secret;
 
+    //fetch info about user
     axios.get('https://graph.facebook.com/v2.12/me?fields=email,name,picture&access_token=' + accessToken)
         .then(response => {
             const { name, id, picture } = response.data;
             const token = require('crypto').randomBytes(64).toString('hex');
+
+            //push user data to db
             userDB.push({
                 name: name,
                 id: id,
@@ -26,12 +29,17 @@ router.post('/login', function(req, res, next) {
                 access_token: accessToken,
                 token: token
             });
-            console.log(userDB);
+
             res.send({name: name, id: id, picture_url: picture.data.url, token: token});
         })
         .catch(err => {
             res.status(400).send(err);
         });
+
+});
+
+router.get('/get-posts', function(req, res, next) {
+    res.send([1, 2, 3]);
 
 });
 

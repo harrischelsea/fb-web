@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getPosts } from "../../actions/postsActions";
 
 class Home extends Component {
+
+    componentDidMount(){
+        this.props.getPosts();
+    }
 
     render() {
         return (
@@ -12,4 +17,5 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = ({ posts }) => ({ posts });
+export default connect(mapStateToProps, { getPosts })(Home);
