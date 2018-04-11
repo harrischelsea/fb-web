@@ -10,6 +10,7 @@ class Likes extends Component {
         this.state = {
             likes: [],
             isLiked: false,
+            err: '',
         }
     }
 
@@ -18,12 +19,14 @@ class Likes extends Component {
             .then(res => {
                 let { likes }= this.state;
                 this.setState({
-                    likes: [...likes, {name: this.props.name, id: this.props.userID}],
+                    likes: [ {name: this.props.name, id: this.props.userID}, ...likes],
                     isLiked: true,
                 })
             })
             .catch( () =>
-                console.log('err!')
+                this.setState({
+                    err: 'Error!',
+                })
             );
     };
 
@@ -31,14 +34,17 @@ class Likes extends Component {
         axios.post('/api/delete-like', { postID, deleteLike: {name: this.props.name, id: this.props.userID} })
             .then(res => {
                 let { likes }= this.state;
-                let x = likes.splice(0, 1);
+                let x = likes.filter(el => el.id !== this.props.userID);
+                console.log(x);
                 this.setState({
                     likes: x,
                     isLiked: false,
                 })
             })
             .catch( () =>
-                console.log('err!')
+                this.setState({
+                    err: 'Error!',
+                })
             );
     };
 
@@ -62,7 +68,7 @@ class Likes extends Component {
                     <span>
                         <Icon
                             className={
-                                this.state.likes && this.state.likes.find(el => el.id === this.props.userID)
+                                this.state.isLiked
                                 ? 'like'
                                 : 'like outline'
                             }
