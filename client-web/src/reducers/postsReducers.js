@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case GET_POSTS_SUCCESS:
-        return {...state, posts: action.payload, loading: false };
+        return {...state, posts: action.payload.data, loading: false };
         case GET_POSTS_PENDING:
             return {...state, loading: true };
         case GET_POSTS_FAILED:

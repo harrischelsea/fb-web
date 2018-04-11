@@ -16,7 +16,6 @@ export const loginUser = response => dispatch => {
         }).catch(err => dispatch(loginUserFailed(err)));
 };
 
-
 const loginUserSuccess = (payload) => ({
     type: LOGIN_USER_SUCCESS,
     payload,

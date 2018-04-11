@@ -1,0 +1,24 @@
+div.ui.segment.add-status {
+    overflow: hidden !important;
+    margin: 10px !important;
+}
+button.ui.positive.button.publish-btn {
+    background-color: #4267b2 !important;
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    float: right;
+    margin-top: 10px;
+}
+div.ui.fluid.input.status-input input {
+    padding: 20px;
+    outline: none;
+    border: none;
+    background-color: none !important;
+    background: none !important;
+}
+div.separation {
+    width: 100%;
+    height: 2px;
+    background-color: #f2f2f2;
+}

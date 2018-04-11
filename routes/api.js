@@ -51,4 +51,33 @@ router.get('/get-posts', function(req, res, next) {
 
 });
 
+router.get('/get-current-user', function(req, res, next) {
+    const user = req.user;
+
+    const current_user = {
+        name: user.name,
+        id: user.id,
+        picture_url: user.picture_url
+    };
+
+    res.send(current_user);
+});
+
+router.post('/add-status', function(req, res, next) {
+    //get current user
+    const user = req.user;
+    //get status
+    const message = req.body.status;
+
+    axios.post('https://graph.facebook.com/v2.12/me/feed?message='+ message +'&access_token=' + user.access_token)
+        .then(response => {
+            res.status(200).send(response.data);
+        })
+        .catch(err => {
+            res.status(400).send(err);
+        });
+
+});
+
+
 module.exports = router;
