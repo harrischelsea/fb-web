@@ -1,0 +1,23 @@
+div.ui.segment.likes {
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #f6f7f9 !important;
+}
+div.ui.mini.modal.transition.visible.active {
+    margin: auto;
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+}
+span.span-like {
+    padding-right: 3px;
+    color: darkblue;
+}
+span.span-like-click {
+    color: darkblue;
+    cursor: pointer;
+}
+
+span.span-like-click:hover {
+    text-decoration: underline;
+}

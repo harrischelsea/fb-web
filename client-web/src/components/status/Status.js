@@ -9,6 +9,7 @@ class Status extends Component {
         super(props);
         this.state = {
             status: '',
+            err: '',
         }
     }
 
@@ -20,10 +21,11 @@ class Status extends Component {
     addStatus = () => {
         axios.post('/api/add-status', { status: this.state.status })
             .then(res => {
-                console.log('ok', res);
+                console.log(res.data);
+                this.setState({ status: '' });
             })
             .catch( () =>
-                console.log('err!')
+                this.setState({ err: 'Error!' })
             );
     };
 
@@ -32,7 +34,6 @@ class Status extends Component {
             <div>
                 <Segment className='add-status'>
                 <Input
-                    icon={this.props.picture}
                     className='status-input'
                     placeholder='Šta Vam je na umu?'
                     type='text'

@@ -1,0 +1,14 @@
+div.ui.segment.comment {
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #f6f7f9 !important;
+}
+div.ui.fluid.input.comment-input input {
+    padding: 20px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid grey;
+    background-color: white !important;
+    margin-bottom: 10px;
+}

@@ -1,13 +1,15 @@
 div.ui.segment.post {
     margin-bottom: 0 !important;
 }
-div.ui.segment.likes {
-    margin: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    background-color: #f6f7f9 !important;
-}
+
 span.like-user {
     padding-right: 5px;
     color: blue;
+}
+div.ui.dropdown {
+    float: right;
+}
+span.date-time {
+    padding-left: 5px;
+    color: grey;
 }

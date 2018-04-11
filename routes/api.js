@@ -41,7 +41,7 @@ router.post('/login', function(req, res, next) {
 router.get('/get-posts', function(req, res, next) {
     const user = req.user;
 
-    axios.get('https://graph.facebook.com/v2.12/me/posts?fields=likes,comments,message,created_time,caption,story,full_picture&access_token=' + user.access_token)
+    axios.get('https://graph.facebook.com/v2.12/me/posts?fields=likes,comments,message,created_time,caption,story,full_picture&limit=10&access_token=' + user.access_token)
         .then(response => {
             res.send(response.data);
         })
@@ -71,6 +71,21 @@ router.post('/add-status', function(req, res, next) {
 
     axios.post('https://graph.facebook.com/v2.12/me/feed?message='+ message +'&access_token=' + user.access_token)
         .then(response => {
+            res.send(response.data);
+        })
+        .catch(err => {
+            res.status(400).send(err);
+        });
+
+});
+
+router.post('/delete-status', function(req, res, next) {
+    //get current user
+    const user = req.user;
+    const post_id = req.body.postID;
+
+    axios.delete('https://graph.facebook.com/v2.12/'+ post_id +'?access_token=' + user.access_token)
+        .then(response => {
             res.status(200).send(response.data);
         })
         .catch(err => {
@@ -79,5 +94,39 @@ router.post('/add-status', function(req, res, next) {
 
 });
 
+router.post('/add-like', function(req, res, next) {
+    //get current user
+    const user = req.user;
+    //get status
+    const postID = req.body.postID;
+    const newLike = req.body.newLike;
+
+    console.log('idd', postID);
+    console.log('new like', newLike);
+
+    /*
+    axios.post('https://graph.facebook.com/v2.12/'+ postID +'/likes&access_token=' + user.access_token)
+        .then(response => {
+            res.status(200).send(response.data);
+        })
+        .catch(err => {
+            res.status(400).send(err);
+        });
+    */
+    res.send('ok!');
+});
+
+router.post('/delete-like', function(req, res, next) {
+    //get current user
+    const user = req.user;
+    //get status
+    const postID = req.body.postID;
+    const deleteLike = req.body.deleteLike;
+
+    console.log('idd', postID);
+    console.log('delete like', deleteLike);
+
+    res.send('ok!');
+});
 
 module.exports = router;
