@@ -3,6 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 var userDB = require('../userDB');
 var secret = require('../secret/secret');
+var fs = require('fs');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -101,18 +102,17 @@ router.post('/add-like', function(req, res, next) {
     const postID = req.body.postID;
     const newLike = req.body.newLike;
 
-    console.log('idd', postID);
-    console.log('new like', newLike);
+    let likeOBJ = {postID, like: newLike};
 
-    /*
-    axios.post('https://graph.facebook.com/v2.12/'+ postID +'/likes&access_token=' + user.access_token)
-        .then(response => {
-            res.status(200).send(response.data);
-        })
-        .catch(err => {
-            res.status(400).send(err);
-        });
-    */
+    let likesData = fs.readFileSync('likes.txt');
+    let arrayLikes = JSON.parse(likesData);
+
+    if (!arrayLikes.find(el => el.postID === postID)) {arrayLikes.push(likeOBJ);}
+
+    fs.writeFile('likes.txt', JSON.stringify(arrayLikes, null, 2), function (err) {
+        if (err) throw err;
+    });
+
     res.send('ok!');
 });
 
@@ -123,8 +123,15 @@ router.post('/add-comment', function(req, res, next) {
     const postID = req.body.postID;
     const newComment = req.body.newComment;
 
-    console.log('idd', postID);
-    console.log('new comment', newComment);
+    let commentOBJ = {postID, comment: newComment};
+
+    let commentsData = fs.readFileSync('comments.txt');
+    let arrayComments = JSON.parse(commentsData);
+    arrayComments.push(commentOBJ);
+
+    fs.writeFile('comments.txt', JSON.stringify(arrayComments, null, 2), function (err) {
+        if (err) throw err;
+    });
 
     res.send('ok!');
 });
@@ -138,6 +145,15 @@ router.post('/delete-like', function(req, res, next) {
 
     console.log('idd', postID);
     console.log('delete like', deleteLike);
+
+
+    let likesData = fs.readFileSync('likes.txt');
+    let arrayLikes = JSON.parse(likesData);
+    let newArrayLikes = arrayLikes.filter(el => el.postID !== postID);
+
+    fs.writeFile('likes.txt', JSON.stringify(newArrayLikes, null, 2), function (err) {
+        if (err) throw err;
+    });
 
     res.send('ok!');
 });

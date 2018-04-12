@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Segment, Image, Header } from 'semantic-ui-react';
+import { Segment, Image, Header, Button } from 'semantic-ui-react';
 import './Sidebar.css';
 
 class Sidebar extends Component {
@@ -13,6 +13,8 @@ class Sidebar extends Component {
                     <Image className='profile-picture' centered src={this.props.user.picture_url} />
                     <Header as='h3' className='profile-name'>{this.props.user.name}</Header>
                     <Header as='h4'>{this.props.user.email}</Header>
+
+                    <Button onClick={this.props.signOutUser}>SignOut</Button>
                 </Segment>
             </div>
         );

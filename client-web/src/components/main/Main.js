@@ -25,10 +25,12 @@ class Main extends Component {
     deleteStatus = (postID) => {
         axios.post('/api/delete-status', { postID })
             .then(res => {
-                console.log(res);
+                this.props.getAllPosts();
+                //TODO handle response
             })
             .catch( (err) =>
-                console.log(err)
+                { //TODO handle error
+                    }
             );
     };
 

@@ -33,3 +33,10 @@ export const loginUserFailed = (err) => ({
 export const logoutUser = () => ({
     type: LOGOUT_USER,
 });
+
+export const signOutUser = () => dispatch => {
+    localStorage.removeItem('token');
+    localStorage.clear();
+    axios.defaults.headers.common['Authorization'] = '';
+    dispatch(logoutUser());
+};
