@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 
 import { Segment, Image, Header, Button } from 'semantic-ui-react';
 import './Sidebar.css';
+import { Redirect } from 'react-router-dom';
 
 class Sidebar extends Component {
+
+    handleSignOut = () => {
+        this.props.signOutUser();
+    };
 
     render() {
         return (
@@ -14,7 +19,7 @@ class Sidebar extends Component {
                     <Header as='h3' className='profile-name'>{this.props.user.name}</Header>
                     <Header as='h4'>{this.props.user.email}</Header>
 
-                    <Button onClick={this.props.signOutUser}>SignOut</Button>
+                    <Button fluid onClick={this.handleSignOut}>SignOut</Button>
                 </Segment>
             </div>
         );

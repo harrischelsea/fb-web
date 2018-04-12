@@ -19,9 +19,7 @@ class Home extends Component {
     }
 
     render() {
-        if (this.props.auth && this.props.auth.isLogged === false) {
-            return <Redirect to='/' />;
-        }
+        if (!this.props.auth.isLogged) return <Redirect to='/login' />;
         if (this.props.posts.loading) return <div style={{marginTop: '20%'}}><Loader active inline='centered' /></div>;
         return (
             <div style={{background: '#e9ebee'}}>
@@ -41,5 +39,5 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = ({ posts, user }) => ({ posts, user });
+const mapStateToProps = ({ posts, user, auth }) => ({ posts, user, auth });
 export default connect(mapStateToProps, { getPosts, getCurrentUser, signOutUser })(Home);
