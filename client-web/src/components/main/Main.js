@@ -70,7 +70,7 @@ class Main extends Component {
                     </Segment>
 
                     <Likes likes={el.likes} postID={el.id} userID={this.props.user.id} name={this.props.user.name}/>
-                    <Comments comments={el.comments} postID={el.id} />
+                    <Comments comments={el.comments} postID={el.id} user={this.props.user} />
                     </div>
                 )}
             </div>

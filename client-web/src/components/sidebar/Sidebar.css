@@ -2,3 +2,13 @@ div.ui.segment.segment-sidebar {
     overflow: hidden !important;
     margin: 10px !important;
 }
+img.ui.centered.image.profile-picture{
+    background-color: white;
+    border: 1px solid #f2f2f2;
+    width: 40%;
+    box-shadow: 2px 2px 5px #888888;
+}
+h3.ui.header.profile-name {
+    text-align: center;
+    font-size: 18px;
+}

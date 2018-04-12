@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import { Button, Input } from 'semantic-ui-react';
+import { Button, Input, TextArea } from 'semantic-ui-react';
 
 class Message extends Component {
     constructor(props){
@@ -39,7 +39,8 @@ class Message extends Component {
                     <h3>{this.state.message}</h3>
                     :
                     <div>
-                    <Input
+                    <TextArea style={{minHeight: '100px', width: '100%'}}
+                          autoHeight
                         fluid
                         type='text'
                         placeholder='Update status...'

@@ -16,12 +16,35 @@ span.comment-name {
     font-weight: bold;
     padding-right: 5px;
 }
-span.comment-msg {
+div.comment-msg {
     padding: 15px;
+    overflow: hidden;
     background: white;
-    border-radius: 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid grey;
+}
+div.comment-time {
+    clear: both;
+    overflow: hidden;
+    margin-left: 30px;
+    color: grey;
 }
 div.comment-box {
     overflow: hidden;
+    margin-top: 10px;
     margin-bottom: 10px;
+    padding: 10px;
+}
+button.ui.button.input-btn {
+    padding: 5px !important;
+
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid grey;
+    background-color: white !important;
+    margin-bottom: 10px;
+    height: 59px;
 }

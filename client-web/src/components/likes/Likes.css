@@ -21,3 +21,5 @@ span.span-like-click {
 span.span-like-click:hover {
     text-decoration: underline;
 }
+i.icon.like.outline { cursor: pointer }
+i.icon.like { cursor: pointer }

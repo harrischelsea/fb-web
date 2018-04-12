@@ -116,6 +116,19 @@ router.post('/add-like', function(req, res, next) {
     res.send('ok!');
 });
 
+router.post('/add-comment', function(req, res, next) {
+    //get current user
+    const user = req.user;
+    //get status
+    const postID = req.body.postID;
+    const newComment = req.body.newComment;
+
+    console.log('idd', postID);
+    console.log('new comment', newComment);
+
+    res.send('ok!');
+});
+
 router.post('/delete-like', function(req, res, next) {
     //get current user
     const user = req.user;

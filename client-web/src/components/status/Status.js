@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import { Segment, Input, Form, Icon, Button } from 'semantic-ui-react';
+import { Segment, Input, Form, Icon, Button, Header } from 'semantic-ui-react';
 import './Status.css';
 
 class Status extends Component {
@@ -33,6 +33,7 @@ class Status extends Component {
         return (
             <div>
                 <Segment className='add-status'>
+                    <Header className='title' as='h3'>Dodajte status!</Header>
                 <Input
                     className='status-input'
                     placeholder='Šta Vam je na umu?'
