@@ -129,4 +129,20 @@ router.post('/delete-like', function(req, res, next) {
     res.send('ok!');
 });
 
+router.post('/update-status', function(req, res, next) {
+    //get current user
+    const user = req.user;
+    //get status
+    const postID = req.body.postID;
+    const message = req.body.message;
+
+    axios.post('https://graph.facebook.com/v2.12/'+ postID +'?message='+ message +'&access_token=' + user.access_token)
+        .then(response => {
+            res.status(200).send(response.data);
+        })
+        .catch(err => {
+            res.status(400).send(err);
+        });
+});
+
 module.exports = router;

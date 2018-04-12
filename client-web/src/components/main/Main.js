@@ -4,19 +4,25 @@ import axios from 'axios';
 import Status from '../status/Status';
 import Likes from '../likes/Likes';
 import Comments from '../comments/Comments';
+import Message from '../message/Message';
 
 import Moment from 'react-moment';
 import 'moment-timezone';
 import 'moment/locale/hr';
 
-import { Segment, Header, Image, Icon, Dropdown } from 'semantic-ui-react';
+import { Segment, Header, Image, Icon, Dropdown, Input, Button } from 'semantic-ui-react';
 import './Main.css';
 
 class Main extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isUpdating: { update: false, postID: ''},
+            err: '',
+        }
+    }
 
     deleteStatus = (postID) => {
-        console.log('kliknuto');
-
         axios.post('/api/delete-status', { postID })
             .then(res => {
                 console.log(res);
@@ -26,18 +32,21 @@ class Main extends Component {
             );
     };
 
+    isUpdating = (postID) => {
+        this.setState({ isUpdating: { update: true, postID} });
+    };
+
     render() {
         return (
             <div>
-                <Status picture={this.props.user.picture_url}/>
-
                 {this.props.posts.map( (el, i) =>
-                    <div style={{margin: '10px'}}>
+                    <div key={i} style={{margin: '10px'}}>
                     <Segment className='post'>
                         <Header className='name' as='h3'>
                             <Dropdown icon='ellipsis horizontal'>
                                 <Dropdown.Menu className='options'>
                                     <Dropdown.Item onClick={() => this.deleteStatus(el.id)} text='Delete' />
+                                    <Dropdown.Item onClick={() => this.isUpdating(el.id)} text='Update' />
                                 </Dropdown.Menu>
                             </Dropdown>
 
@@ -48,9 +57,15 @@ class Main extends Component {
                             <Moment className='date-time' element='span' locale='hr' tz='Europe/Sarajevo' fromNow>
                                 {el.created_time}
                             </Moment>
-
                         </Header>
-                        <h3>{el.message ? el.message : ''}</h3>
+
+                        <h3>{el.message
+                            ?
+                            <Message msg={el.message} isUpdating={this.state.isUpdating} postID={el.id}/>
+                            :
+                            ''}
+                        </h3>
+
                         <Image centered src={el.full_picture} />
                     </Segment>
 

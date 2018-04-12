@@ -7,6 +7,7 @@ import { getCurrentUser } from "../../actions/currentUserActions";
 import {Grid, Container} from 'semantic-ui-react';
 import Main from '../../components/main/Main';
 import Sidebar from '../../components/sidebar/Sidebar';
+import Status from '../../components/status/Status';
 
 class Home extends Component {
 
@@ -25,6 +26,7 @@ class Home extends Component {
                     <Sidebar/>
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={12}>
+                    <Status picture={this.props.user.user.picture_url} getAllPosts={this.props.getPosts}/>
                     <Main user={this.props.user.user} posts={this.props.posts.posts}/>
                 </Grid.Column>
             </Grid>
