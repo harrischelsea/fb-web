@@ -12,3 +12,16 @@ div.ui.fluid.input.comment-input input {
     background-color: white !important;
     margin-bottom: 10px;
 }
+span.comment-name {
+    font-weight: bold;
+    padding-right: 5px;
+}
+span.comment-msg {
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+}
+div.comment-box {
+    overflow: hidden;
+    margin-bottom: 10px;
+}

@@ -1,32 +1,35 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import { Segment, Input } from 'semantic-ui-react';
+import { Segment, Input, Button } from 'semantic-ui-react';
 import './Comments.css';
 
 class Comments extends Component {
     constructor(props){
         super(props);
         this.state = {
-            comment: '',
+            comments: [],
+            comment: {},
             err: '',
+            commentMSG: '',
         }
     }
 
     handleComment = e => {
-        this.setState({ comment: e.target.value });
+        this.setState({ commentMSG: e.target.value, comment: { message: this.state.commentMSG, from: {name: 'haris', id: '1'}} });
     };
 
     addCommenet = () => {
-        axios.post('/api/add-comment', { comment: this.state.comment })
-            .then(res => {
-                console.log(res.data);
-                this.setState({ status: '' });
-            })
-            .catch( () =>
-                this.setState({ err: 'Error!' })
-            );
+        this.setState({ commentMSG: '' ,comments: [ this.state.comment, ...this.state.comments]});
     };
+
+    componentDidMount(){
+        if(this.props.comments && this.props.comments.data ){
+            this.setState({
+                comments: this.props.comments.data
+            });
+        }
+    }
 
     render() {
         return (
@@ -37,15 +40,17 @@ class Comments extends Component {
                         placeholder='Napišite komentar...'
                         type='text'
                         fluid
+                        value={this.state.commentMSG}
                         onChange={this.handleComment}
                     />
+                    <Button onClick={this.addCommenet}>Add comment</Button>
 
-                    {this.props.comments
-                        ? this.props.comments.data.map(el =>
-                            <div>
-                            <span>{el.from.name}</span>
-                            <span>{el.message}</span>
-                            <span>{el.created_time}</span>
+                    {this.state.comments
+                        ? this.state.comments.map(el =>
+                            <div className='comment-box'>
+                            <span className='comment-name'>{el.from.name}</span>
+                            <span className='comment-msg'>{el.message}</span>
+                            <span className='comment-time'>{el.created_time}</span>
                             </div>
                         )
                         : ''}
