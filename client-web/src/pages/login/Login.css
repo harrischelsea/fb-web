@@ -1,0 +1,12 @@
+div.login {
+    background-color: #4267b5;;
+    height: 100vh;
+}
+button.kep-login-facebook.metro {
+    margin-top: 20% !important;
+    box-shadow: 2px 2px 5px black;
+    outline: none;
+}
+button.kep-login-facebook.metro:hover {
+    box-shadow: 5px 5px 8px black;
+}

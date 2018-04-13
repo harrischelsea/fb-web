@@ -35,7 +35,7 @@ class Comments extends Component {
             .then(res => {
                 this.setState({
                     commentMSG: '' ,
-                    comments: [ this.state.comment, ...this.state.comments]
+                    comments: [ this.state.comment, ...this.state.comments ]
                 });
             })
             .catch( () =>

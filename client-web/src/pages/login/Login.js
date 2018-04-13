@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {APP_ID} from '../../secret/Secret';
 import {loginUserFailed, loginUser} from "../../actions/authActions";
+import './Login.css';
 
 class Login extends Component {
 
@@ -17,7 +18,7 @@ class Login extends Component {
             return <Redirect to='/' />;
         }
         return (
-            <div>
+            <div className='login' align='center'>
                 <FacebookLogin
                     appId={APP_ID}
                     autoLoad={true}
