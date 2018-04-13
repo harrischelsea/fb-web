@@ -19,11 +19,10 @@ class Status extends Component {
     };
 
     addStatus = () => {
-        const message = this.state.status;
-        this.setState({ status: '' });
-        axios.post('/api/add-status', { message })
+        axios.post('/api/add-status', { message: this.state.status })
             .then(res => {
-                    this.props.getStatus(res.data.id);
+                this.setState({ status: '' });
+                this.props.getStatus(res.data.id);
             })
             .catch( () =>
                 this.setState({ err: 'Error!' })
@@ -40,6 +39,7 @@ class Status extends Component {
                     placeholder='Šta Vam je na umu?'
                     type='text'
                     fluid
+                    value={this.state.status}
                     onChange={this.handleStatus}
                 />
                     <div className='separation'></div>
