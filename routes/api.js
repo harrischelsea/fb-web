@@ -13,9 +13,6 @@ router.get('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
     const accessToken = req.body.accessToken;
 
-    let app_id = secret.app_id;
-    let app_secret = secret.app_secret;
-
     //fetch info about user
     axios.get('https://graph.facebook.com/v2.12/me?fields=email,name,picture&access_token=' + accessToken)
         .then(response => {
@@ -142,10 +139,6 @@ router.post('/delete-like', function(req, res, next) {
     //get status
     const postID = req.body.postID;
     const deleteLike = req.body.deleteLike;
-
-    console.log('idd', postID);
-    console.log('delete like', deleteLike);
-
 
     let likesData = fs.readFileSync('likes.txt');
     let arrayLikes = JSON.parse(likesData);
