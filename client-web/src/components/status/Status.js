@@ -19,7 +19,7 @@ class Status extends Component {
     };
 
     addStatus = () => {
-        axios.post('/api/add-status', { status: this.state.status })
+        axios.post('/api/add-status', { message: this.state.status })
             .then(res => {
                 this.setState({ status: '' });
                 this.props.getStatus(res.data.id);

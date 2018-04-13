@@ -65,7 +65,7 @@ router.post('/add-status', function(req, res, next) {
     //get current user
     const user = req.user;
     //get status
-    const message = req.body.status;
+    const message = req.body.message;
 
     axios.post('https://graph.facebook.com/v2.12/me/feed?message='+ message +'&access_token=' + user.access_token)
         .then(response => {
