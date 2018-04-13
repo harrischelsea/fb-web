@@ -24,6 +24,6 @@ class App extends Component {
   }
 }
 
-axios.defaults.baseURL = 'http://localhost:5000/';
+//axios.defaults.baseURL = 'http://localhost:5000/';
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')?localStorage.getItem('token'): '';
 export default App;
