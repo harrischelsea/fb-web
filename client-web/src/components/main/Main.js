@@ -42,7 +42,7 @@ class Main extends Component {
         return (
             <div>
                 {this.props.posts.map( (el, i) =>
-                    <div key={i} style={{margin: '10px'}}>
+                    <div key={el.id} style={{margin: '10px'}}>
                     <Segment className='post'>
                         <Header className='name' as='h3'>
                             <Dropdown icon='ellipsis horizontal'>

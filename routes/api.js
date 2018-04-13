@@ -20,6 +20,7 @@ router.post('/login', function(req, res, next) {
             const token = require('crypto').randomBytes(64).toString('hex');
 
             //push user data to db
+            //TODO use auth with real db
             userDB.push({
                 name: name,
                 id: id,
@@ -68,6 +69,22 @@ router.post('/add-status', function(req, res, next) {
     const message = req.body.status;
 
     axios.post('https://graph.facebook.com/v2.12/me/feed?message='+ message +'&access_token=' + user.access_token)
+        .then(response => {
+            res.send(response.data);
+        })
+        .catch(err => {
+            res.status(400).send(err);
+        });
+
+});
+
+router.get('/status/:id', function(req, res, next) {
+    //get current user
+    const user = req.user;
+    //get status
+    const postId = req.params.id;
+
+    axios.get('https://graph.facebook.com/v2.12/'+ postId +'?access_token=' + user.access_token)
         .then(response => {
             res.send(response.data);
         })

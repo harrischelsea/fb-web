@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getPosts } from "../../actions/postsActions";
+import { getPosts, getStatus } from "../../actions/postsActions";
 import { getCurrentUser } from "../../actions/currentUserActions";
 import { signOutUser } from "../../actions/authActions";
 
@@ -29,7 +29,7 @@ class Home extends Component {
                     <Sidebar user={this.props.user.user} signOutUser={this.props.signOutUser} />
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={12}>
-                    <Status picture={this.props.user.user.picture_url} getAllPosts={this.props.getPosts} />
+                    <Status picture={this.props.user.user.picture_url} getStatus={this.props.getStatus} />
                     <Main user={this.props.user.user} posts={this.props.posts.posts} getAllPosts={this.props.getPosts} />
                 </Grid.Column>
             </Grid>
@@ -40,4 +40,4 @@ class Home extends Component {
 }
 
 const mapStateToProps = ({ posts, user, auth }) => ({ posts, user, auth });
-export default connect(mapStateToProps, { getPosts, getCurrentUser, signOutUser })(Home);
+export default connect(mapStateToProps, { getPosts, getCurrentUser, signOutUser, getStatus })(Home);

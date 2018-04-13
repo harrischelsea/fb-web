@@ -7,5 +7,14 @@
       "current_time": 1523571307173,
       "message": "11111111"
     }
+  },
+  {
+    "postID": "104470817077169_106087503582167",
+    "comment": {
+      "name": "Test User",
+      "id": "104470817077169",
+      "current_time": 1523621072533,
+      "message": "dasdasaddsasadsaddsa"
+    }
   }
 ]

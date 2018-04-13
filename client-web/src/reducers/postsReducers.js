@@ -2,11 +2,15 @@ import {
     GET_POSTS_FAILED,
     GET_POSTS_PENDING,
     GET_POSTS_SUCCESS,
-    LOGOUT_USER
+    LOGOUT_USER,
+    GET_STATUS_FAILED,
+    GET_STATUS_PENDING,
+    GET_STATUS_SUCCESS
 } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
     loading: true,
+    loadingStatus: false,
     err: '',
 };
 
@@ -17,6 +21,12 @@ export default (state = INITIAL_STATE, action) => {
         case GET_POSTS_PENDING:
             return {...state, loading: true };
         case GET_POSTS_FAILED:
+            return {...state, err: action.payload };
+        case GET_STATUS_SUCCESS:
+            return {...state, posts: [{...action.payload}, ...state.posts], loadingStatus: false };
+        case GET_STATUS_PENDING:
+            return {...state, loadingStatus: true };
+        case GET_STATUS_FAILED:
             return {...state, err: action.payload };
         case LOGOUT_USER:
             return INITIAL_STATE;

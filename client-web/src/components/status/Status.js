@@ -21,8 +21,8 @@ class Status extends Component {
     addStatus = () => {
         axios.post('/api/add-status', { status: this.state.status })
             .then(res => {
-                this.props.getAllPosts();
                 this.setState({ status: '' });
+                this.props.getStatus(res.data.id);
             })
             .catch( () =>
                 this.setState({ err: 'Error!' })

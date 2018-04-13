@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-import { GET_POSTS_FAILED, GET_POSTS_PENDING, GET_POSTS_SUCCESS } from './actionTypes';
+import {
+    GET_POSTS_FAILED,
+    GET_POSTS_PENDING,
+    GET_POSTS_SUCCESS,
+    GET_STATUS_FAILED,
+    GET_STATUS_SUCCESS,
+    GET_STATUS_PENDING,
+} from './actionTypes';
 
 export const getPosts = () => dispatch => {
 
@@ -25,3 +32,27 @@ export const getPostsFailed = (err) => ({
     type: GET_POSTS_FAILED,
     payload: err,
 });
+
+
+const getStatusSuccess = (payload) => ({
+    type: GET_STATUS_SUCCESS,
+    payload,
+});
+
+const getStatusPending = () => ({
+    type: GET_STATUS_PENDING,
+});
+
+export const getStatusFailed = (err) => ({
+    type: GET_STATUS_FAILED,
+    payload: err,
+});
+
+export const getStatus = (postID) => dispatch => {
+    dispatch(getStatusPending());
+    axios.get('/api/status/' + postID)
+        .then((res) => {
+            console.log('11111', res.data);
+            dispatch(getStatusSuccess(res.data));
+        }).catch(err => dispatch(getStatusFailed(err)));
+};
