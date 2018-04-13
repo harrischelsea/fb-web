@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 var userDB = require('../userDB');
-var secret = require('../secret/secret');
 var fs = require('fs');
 
 /* GET users listing. */
