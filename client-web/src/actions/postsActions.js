@@ -7,6 +7,7 @@ import {
     GET_STATUS_FAILED,
     GET_STATUS_SUCCESS,
     GET_STATUS_PENDING,
+    DELETE_STATUS_SUCCESS
 } from './actionTypes';
 
 export const getPosts = () => dispatch => {
@@ -33,7 +34,6 @@ export const getPostsFailed = (err) => ({
     payload: err,
 });
 
-
 const getStatusSuccess = (payload) => ({
     type: GET_STATUS_SUCCESS,
     payload,
@@ -55,4 +55,14 @@ export const getStatus = (postID) => dispatch => {
             console.log('11111', res.data);
             dispatch(getStatusSuccess(res.data));
         }).catch(err => dispatch(getStatusFailed(err)));
+};
+
+
+const deleteStatusSuccess = (payload) => ({
+    type: DELETE_STATUS_SUCCESS,
+    payload,
+});
+
+export const deleteStatus = (postID) => dispatch => {
+    dispatch(deleteStatusSuccess(postID));
 };
