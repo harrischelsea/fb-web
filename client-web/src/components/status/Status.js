@@ -32,7 +32,7 @@ class Status extends Component {
     render() {
         return (
             <div>
-                <Segment className='add-status'>
+                <Segment key='status' className='add-status'>
                     <Header className='title' as='h3'>Dodajte status!</Header>
                 <Input
                     className='status-input'
